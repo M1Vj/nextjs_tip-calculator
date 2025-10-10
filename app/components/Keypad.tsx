@@ -9,7 +9,7 @@ export default function Keypad({ selected, onSelect }: Props) {
     const [custom, setCustom] = useState<string>("");
 
     return (
-        <div role="radiogroup" className="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div role="radiogroup" className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {PRESETS.map((pct) => {
                 const isActive = selected === pct;
                 return (
@@ -20,11 +20,11 @@ export default function Keypad({ selected, onSelect }: Props) {
                         aria-checked={isActive}
                         onClick={() => { onSelect(pct); setCustom(""); }}
                         className={[
-                            "rounded-lg p-3 text-center text-xl transition outline-none",
+                            "rounded-lg py-3 text-center text-2xl font-bold transition outline-none cursor-pointer",
                             "focus:ring-2 focus:ring-green-400",
                             isActive
                                 ? "bg-green-400 text-green-900"
-                                : "bg-green-900 text-white hover:brightness-110"
+                                : "bg-green-900 text-white hover:bg-green-400 hover:text-green-900"
                         ].join(" ")}
                         aria-label={`${pct}% tip`}
                     >
@@ -46,10 +46,9 @@ export default function Keypad({ selected, onSelect }: Props) {
                         if (Number.isFinite(n)) onSelect(n); // parent owns the source of truth
                     }}
                     onFocus={() => { /* just visual focus */ }}
-                    className="w-full rounded-lg bg-grey-50 p-3 text-xl text-right
+                    className="w-full rounded-lg bg-grey-50 py-3 px-4 text-2xl font-bold text-green-900 text-right
                      placeholder:text-grey-400 outline-none focus:ring-2 focus:ring-green-400"
                 />
-                <span className="absolute inset-y-0 left-3 grid place-items-center text-grey-400">%</span>
             </label>
         </div>
     )

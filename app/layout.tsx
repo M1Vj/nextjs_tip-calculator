@@ -9,7 +9,7 @@ const spaceMono = Space_Mono(
 )
 
 export const metadata: Metadata = {
-  title: "Tip Calculator",
+  title: "Tip Calculator - Vj Mabansag",
   description: "Tip calculator app by Vj Mabansag",
 };
 

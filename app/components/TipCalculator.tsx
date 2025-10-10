@@ -23,17 +23,17 @@ export default function TipCalculator() {
     }, [bill, people, tipPct]);
 
     return (
-        <section className="max-w-3xl w-full grid gap-6 md:grid-cols-2 rounded-2xl shadow p-6 bg-white">
-            <div className="space-y-5">
+        <section className="w-full grid gap-8 md:grid-cols-2">
+            <div className="space-y-8">
                 <Input label="Bill" value={bill} onChange={setBill} prefix="₱" />
                 <div>
-                    <p className="text-grey-500 text-sm mb-2">Select Tip %</p>
+                    <p className="text-grey-500 text-sm font-bold mb-4">Select Tip %</p>
                     <Keypad selected={tipPct} onSelect={(pct) => setTipPct(pct)} />
                 </div>
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <p className="text-grey-500 text-sm">Number of People</p>
-                    {peopleErr && <p className="text-xs text-red-600">{peopleErr}</p>}
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-grey-500 text-sm font-bold">Number of People</p>
+                    {peopleErr && <p className="text-xs text-red-600 font-semibold">{peopleErr}</p>}
                   </div>
                   <Input
                     label="" /* label is shown above, so leave this blank */

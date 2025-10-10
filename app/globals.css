@@ -1,6 +1,18 @@
-@import "tailwindcss/preflight";
-@tailwind utilities;
-@tailwind utilities;
+@import "tailwindcss";
 
-html, body {height: 100%}
-body{background: hsl(185, 41%, 84%)}
+@theme {
+  --color-green-400: hsl(172, 67%, 45%);
+  --color-green-900: hsl(183, 100%, 15%);
+  --color-grey-50: hsl(189, 47%, 97%);
+  --color-grey-400: hsl(184, 14%, 56%);
+  --color-grey-500: hsl(186, 14%, 43%);
+  --color-grey-200: hsl(185, 41%, 84%);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: hsl(185, 41%, 84%);
+}
