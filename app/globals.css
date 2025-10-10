@@ -1,0 +1,6 @@
+@import "tailwindcss/preflight";
+@tailwind utilities;
+@tailwind utilities;
+
+html, body {height: 100%}
+body{background: hsl(185, 41%, 84%)}
