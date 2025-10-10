@@ -26,6 +26,7 @@ export default function Keypad({ selected, onSelect }: Props) {
                                 ? "bg-green-400 text-green-900"
                                 : "bg-green-900 text-white hover:brightness-110"
                         ].join(" ")}
+                        aria-label={`${pct}% tip`}
                     >
                         {pct}%
                     </button>

@@ -1,11 +1,21 @@
+'use client';
+
 type Props = {
   tipPerPerson: number;
   totalPerPerson: number;
   onReset: () => void;
 };
 
+const php = new Intl.NumberFormat('en-PH', {
+  style: 'currency',
+  currency: 'PHP',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+
+const safe = (n: number) => (Number.isFinite(n) ? n : 0);
+
 export default function Display({ tipPerPerson, totalPerPerson, onReset }: Props) {
-  const fmt = (n: number) => `$${n.toFixed(2)}`;
   const disabled = tipPerPerson === 0 && totalPerPerson === 0;
   return (
     <div className="flex flex-col justify-between rounded-xl bg-green-900 p-6 text-white">
@@ -15,14 +25,14 @@ export default function Display({ tipPerPerson, totalPerPerson, onReset }: Props
             <p className="text-sm">Tip Amount</p>
             <p className="text-xs text-grey-300">/ person</p>
           </div>
-          <p className="text-3xl text-green-400">{fmt(tipPerPerson)}</p>
+          <p className="text-3xl text-green-400">{php.format(safe(tipPerPerson))}</p>
         </div>
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm">Total</p>
             <p className="text-xs text-grey-300">/ person</p>
           </div>
-          <p className="text-3xl text-green-400">{fmt(totalPerPerson)}</p>
+          <p className="text-3xl text-green-400">{php.format(safe(totalPerPerson))}</p>
         </div>
       </div>
       <button

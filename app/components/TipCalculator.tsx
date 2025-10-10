@@ -10,6 +10,9 @@ export default function TipCalculator() {
     const [people, setPeople] = useState('1');
     const [tipPct, setTipPct] = useState(0);
 
+    const peopleNum = Math.max(0, Math.floor(Number(people.replace(/[^0-9]/g, '')) || 0));
+    const peopleErr = peopleNum <= 0 ? "Can't be zero" : "";
+
     const { tipPerPerson, totalPerPerson } = useMemo(() => {
         const billNum = Number(bill.replace(/[^0-9.]/g, '')) || 0;
         const peopleNum = Math.max(0, Math.floor(Number(people.replace(/[^0-9]/g, '')) || 0));
@@ -22,12 +25,25 @@ export default function TipCalculator() {
     return (
         <section className="max-w-3xl w-full grid gap-6 md:grid-cols-2 rounded-2xl shadow p-6 bg-white">
             <div className="space-y-5">
-                <Input label="Bill" value={bill} onChange={setBill} prefix="$" />
+                <Input label="Bill" value={bill} onChange={setBill} prefix="₱" />
                 <div>
                     <p className="text-grey-500 text-sm mb-2">Select Tip %</p>
                     <Keypad selected={tipPct} onSelect={(pct) => setTipPct(pct)} />
                 </div>
-                <Input label="Number of People" value={people} onChange={setPeople} prefix="👤" />
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="text-grey-500 text-sm">Number of People</p>
+                    {peopleErr && <p className="text-xs text-red-600">{peopleErr}</p>}
+                  </div>
+                  <Input
+                    label="" /* label is shown above, so leave this blank */
+                    value={people}
+                    onChange={setPeople}
+                    prefix="👤"
+                    invalid={!!peopleErr} /* new prop to style invalid state */
+                    ariaInvalid={!!peopleErr}
+                  />
+                </div>
             </div>
             <Display tipPerPerson={tipPerPerson} totalPerPerson={totalPerPerson} onReset={() => { setBill('0'); setPeople('1'); setTipPct(0); }} />
         </section>
