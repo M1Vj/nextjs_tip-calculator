@@ -23,25 +23,25 @@ export default function TipCalculator() {
     }, [bill, people, tipPct]);
 
     return (
-        <section className="w-full grid gap-8 md:grid-cols-2">
-            <div className="space-y-8">
-                <Input label="Bill" value={bill} onChange={setBill} prefix="₱" />
+        <section className="w-full grid gap-6 md:gap-8 md:grid-cols-2">
+            <div className="space-y-6 md:space-y-8">
+                <Input label="Bill" value={bill} onChange={setBill} prefix="₱" allowDecimals={true} />
                 <div>
-                    <p className="text-grey-500 text-sm font-bold mb-4">Select Tip %</p>
+                    <p className="text-grey-500 text-sm font-bold mb-3 md:mb-4">Select Tip %</p>
                     <Keypad selected={tipPct} onSelect={(pct) => setTipPct(pct)} />
                 </div>
                 <div>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-between mb-3 md:mb-2">
                     <p className="text-grey-500 text-sm font-bold">Number of People</p>
                     {peopleErr && <p className="text-xs text-red-600 font-semibold">{peopleErr}</p>}
                   </div>
                   <Input
-                    label="" /* label is shown above, so leave this blank */
+                    label="" 
                     value={people}
                     onChange={setPeople}
                     prefix="👤"
-                    invalid={!!peopleErr} /* new prop to style invalid state */
                     ariaInvalid={!!peopleErr}
+                    allowDecimals={false}
                   />
                 </div>
             </div>
