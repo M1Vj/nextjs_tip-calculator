@@ -7,13 +7,13 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "if [ \"${SKIP_VITEST:-}\" = \"1\" ]; then echo \"SKIP: SKIP_VITEST=1 set -- skipping vitest (hermetic gate: offline CI without browser/network)\"; exit 0; fi; vitest run --config ./vitest.ci.config.ts",
+    "test:watch": "vitest --config ./vitest.ci.config.ts"
   },
   "dependencies": {
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.7"
+    "react": "19.1.5",
+    "react-dom": "19.1.5",
+    "next": "15.5.9"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -23,12 +23,19 @@
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "15.5.3",
+    "eslint-config-next": "15.5.9",
     "@eslint/eslintrc": "^3",
     "vitest": "^2.1.0",
     "jsdom": "^25.0.0",
     "@testing-library/react": "^16.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.5.2"
+  },
+  "overrides": {
+    "react": "19.1.5",
+    "react-dom": "19.1.5",
+    "react-server-dom-webpack": "19.1.5",
+    "react-server-dom-parcel": "19.1.5",
+    "react-server-dom-turbopack": "19.1.5"
   }
 }
